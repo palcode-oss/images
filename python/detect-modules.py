@@ -1,5 +1,5 @@
 from os import listdir
-from os.path import isfile, join
+from os.path import isfile, join, isdir
 import ast
 import sys
 import importlib
@@ -28,6 +28,7 @@ for file_name in files:
         imports.append(node.module)
 
 remote_imports = []
+delete_modules = True
 for module_name in imports:
   # if the module refers to a user-created python file, we don't need to install it
   if module_name + '.py' not in files:
@@ -35,27 +36,23 @@ for module_name in imports:
       # if we can import it without crashing, it's a built-in module (e.g. os, ast, itertools)
       importlib.import_module(module_name)
     except:
-      # if it isn't a local file, and it can't be imported without crashing, it's probably a PyPI module
-      # if the user has just entered gibberish, the startup script will crash before the code runs — which is fine
-      remote_imports.append(module_name)
-
-# write our requirements to requirements.txt
-# we don't need to query version numbers because:
-#   a) PalCode isn't for industrial projects that need stability
-#   b) Making network requests on every single run would be slow and consume bandwidth
-with open('/usr/src/app/requirements.txt', 'w') as f:
-  for module_name in remote_imports:
-    # when importing some modules, you can destructure the import using a .
-    # this won't resolve when installing via pip, so we need to find the first part of the string
-    if '.' in module_name:
-      module_name = module_name.split('.')[0]
-    f.write(module_name + "\n")
+      # if it's a module that's already installed (e.g. from a previous run), we don't need to install it
+      if not isdir('/usr/src/app/env/lib/python3.9/site-packages/' + module_name) and not isfile('/usr/src/app/env/lib/python3.9/site-packages/' + module_name + '.py'):
+        # if it isn't a local file, and it can't be imported without crashing, it's probably a PyPI module
+        # if the user has just entered gibberish, the startup script will crash before the code runs — which is fine
+        remote_imports.append(module_name)
+      else:
+        # since we've found an already-installed remote module, we can't delete the environment now
+        delete_modules = False
 
 # this is how we tell our shell script whether to create/keep the environment, or to destroy it
 if len(remote_imports) != 0:
-  print('YES')
+  print('python -m pip install ' + ' '.join(remote_imports))
+  sys.exit(0)
+elif delete_modules == True:
+  print('NO')
   sys.exit(0)
 else:
-  print('NO')
+  print('')
   sys.exit(0)
 

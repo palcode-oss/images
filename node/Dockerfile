@@ -1,4 +1,4 @@
-FROM node:14-alpine
+FROM node:14.15.3-alpine3.12
 RUN apk add coreutils
 RUN apk add bash
 RUN mkdir /opt/runner-modules
