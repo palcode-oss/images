@@ -1,6 +1,4 @@
-FROM python:3-alpine
-RUN apk add coreutils
-RUN apk add bash
+FROM python:slim
 
 WORKDIR /opt/runner
 COPY python/run.sh run.sh
