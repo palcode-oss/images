@@ -7,3 +7,9 @@ docker image push palcode/node:14.15.3
 
 bash/build.sh 1.0.0
 docker image push palcode/bash:1.0.0
+
+prolog/build.sh 8.3.13
+docker image push palcode/prolog:8.3.13
+
+java/build.sh 16
+docker image push palcode/java:16
