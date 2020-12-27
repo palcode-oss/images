@@ -1,6 +1,6 @@
-FROM node:14.15.3-alpine3.12
-RUN apk add coreutils
-RUN apk add bash
+FROM node:14.15.3-buster
+RUN apt-get install -y coreutils
+
 RUN mkdir /opt/runner-modules
 WORKDIR /opt/runner-modules
 RUN yarn init -y
