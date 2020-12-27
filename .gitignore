@@ -1,2 +1,2 @@
 .idea/*
-go_build_*
+go_binary

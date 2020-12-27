@@ -5,6 +5,6 @@ RUN apt-get install -y g++
 
 WORKDIR /opt/runner
 COPY python/run.sh run.sh
-COPY python/go_build_run_go_linux run
+COPY python/go_binary run
 
 ENTRYPOINT ["/bin/bash"]
