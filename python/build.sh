@@ -6,4 +6,6 @@ curl -s https://api.github.com/repos/palcode-oss/runner-python/releases/latest \
 | tr -d \" \
 | xargs curl -L --output python/go_binary
 
+chmod +x python/go_binary
+
 docker build -t palcode/python:"$1" -f python/Dockerfile --platform amd64 .
