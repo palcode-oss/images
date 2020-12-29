@@ -2,6 +2,6 @@ FROM openjdk:16-jdk-alpine
 RUN apk add coreutils bash
 
 WORKDIR /opt/runner
-COPY java/run.sh run.sh
+COPY go_binary run
 
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["./run"]

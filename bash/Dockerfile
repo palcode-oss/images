@@ -2,6 +2,6 @@ FROM alpine:3
 RUN apk add coreutils bash
 
 WORKDIR /opt/runner
-COPY bash/run.sh run.sh
+COPY go_binary run
 
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["./run"]

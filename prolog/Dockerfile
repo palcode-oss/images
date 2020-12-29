@@ -1,6 +1,6 @@
 FROM swipl:8.3.13
 
 WORKDIR /opt/runner
-COPY prolog/run.sh run.sh
+COPY go_binary run
 
-CMD ["/bin/bash"]
+CMD ["./run"]
