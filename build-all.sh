@@ -22,3 +22,6 @@ docker image push palcode/prolog:8.3.13
 
 docker build -t palcode/java:16 -f java/Dockerfile --platform amd64 .
 docker image push palcode/java:16
+
+docker build -t palcode/go:1.15.6 -f go/Dockerfile --platform amd64 .
+docker image push palcode/go:1.15.6
