@@ -1,6 +1,8 @@
 #!/bin/bash
 
-curl -s https://api.github.com/repos/palcode-oss/container-init/releases/latest \
+CONTAINER_INIT_VERSION=v0.1.4
+
+curl -s https://api.github.com/repos/palcode-oss/container-init/releases/tags/$CONTAINER_INIT_VERSION \
 | grep "browser_download_url." \
 | cut -d : -f 2,3 \
 | tr -d \" \
