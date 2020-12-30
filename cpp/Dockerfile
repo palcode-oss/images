@@ -1,5 +1,6 @@
 FROM debian:buster
 
+RUN apt-get update -y
 RUN apt-get install -y coreutils
 RUN apt-get install -y g++
 
