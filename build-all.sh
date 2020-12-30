@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CONTAINER_INIT_VERSION=v0.2.0
+CONTAINER_INIT_VERSION=v0.2.1
 
 curl -s https://api.github.com/repos/palcode-oss/container-init/releases/tags/$CONTAINER_INIT_VERSION \
 | grep "browser_download_url." \
