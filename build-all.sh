@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CONTAINER_INIT_VERSION=v0.1.4
+CONTAINER_INIT_VERSION=v0.2.0
 
 curl -s https://api.github.com/repos/palcode-oss/container-init/releases/tags/$CONTAINER_INIT_VERSION \
 | grep "browser_download_url." \
@@ -27,3 +27,6 @@ docker image push palcode/java:16
 
 docker build -t palcode/go:1.15.6 -f go/Dockerfile --platform amd64 .
 docker image push palcode/go:1.15.6
+
+docker build -t palcode/cpp:buster -f cpp/Dockerfile --platform amd64 .
+docker image push palcode/cpp:buster
