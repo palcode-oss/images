@@ -30,3 +30,6 @@ docker image push palcode/go:1.15.6
 
 docker build -t palcode/cpp:buster -f cpp/Dockerfile --platform amd64 .
 docker image push palcode/cpp:buster
+
+docker build -t palcode/php:8 -f php/Dockerfile --platform amd64 .
+docker image push palcode/php:8
